@@ -26,6 +26,9 @@
   <h2>User interaction</h2>
   <p>Timer resets are based on trusted browser user-interaction events such as pointer, keyboard, wheel, touch, input, and change events. DOM changes, animations, network activity, media playback, and synthetic script-generated events do not reset the inactivity timer.</p>
 
+  <h2>Warning sound</h2>
+  <p>When a monitored tab enters its warning period, EdgeClose plays a short beep locally from a hidden extension page created with the <code>offscreen</code> permission. The sound is generated on the device, is not recorded, and no audio data is transmitted to the developer or any other party.</p>
+
   <h2>Managed devices</h2>
   <p>On organization-managed devices, an administrator may provide EdgeClose rules through Edge's managed extension policy. Managed policy rules take precedence over local user settings. The extension does not transmit managed-policy values to the developer.</p>
 

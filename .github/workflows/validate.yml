@@ -19,9 +19,11 @@ jobs:
 
       - name: Check JavaScript syntax
         run: |
-          node --check background.js
+          node --check background-v171.js
           node --check content.js
           node --check options.js
+          node --check options-pro-v171.js
+          node --check offscreen.js
           node --check popup.js
 
       - name: Validate JSON and version

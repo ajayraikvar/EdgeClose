@@ -22,17 +22,18 @@ jobs:
           rm -f EdgeClose-*.zip
           zip -r EdgeClose-${GITHUB_SHA}.zip \
             manifest.json \
-            background.js \
+            background-v171.js \
             content.js \
             content.css \
+            offscreen.html \
+            offscreen.js \
             options.html \
             options.css \
             options.js \
-            popup.html \
-            popup.css \
-            popup.js \
+            options-pro-v171.js \
             managed_schema.json \
-            privacy-policy.html
+            privacy-policy.html \
+            icons
 
       - name: Rename package to manifest version
         shell: bash

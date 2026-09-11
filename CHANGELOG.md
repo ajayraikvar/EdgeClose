@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.7.2
+
+- Fix the warning sound so the beep reliably plays when the warning period starts, including when the monitored tab is in the background or the computer is idle.
+- The beep now plays from the extension's own audio context (offscreen document) instead of depending on web-page audio permissions.
+- Keep the settings password gate, timer engine, policy precedence, audit controls, pause controls, and privacy protections from v1.7.1 unchanged.
+
 ## v1.7.1
 
 - Enhanced extension features and performance improvements.

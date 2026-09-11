@@ -56,10 +56,6 @@ function render() {
   const countdown = document.createElement("b");
   countdown.textContent = `Closing in ${formatTime(remainingSeconds)}`;
   panel.append(head, text, countdown);
-  if (soundEnabled && !warningSoundPlayed) {
-    warningSoundPlayed = true;
-    playWarningSound();
-  }
   clearStaleTimer();
   if (remainingSeconds <= 0) {
     // The countdown reached zero; the tab should close within a moment. If it
