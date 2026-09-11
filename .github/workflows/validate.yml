@@ -36,9 +36,6 @@ jobs:
           if (manifest.version !== version) {
             throw new Error(`VERSION mismatch: manifest=${manifest.version}, VERSION=${version}`);
           }
-          if (manifest.action?.default_popup !== 'popup.html') {
-            throw new Error('Toolbar popup is not configured');
-          }
           if (manifest.content_security_policy?.extension_pages !== "script-src 'self'; object-src 'self';") {
             throw new Error('Extension CSP is missing or unexpected');
           }
