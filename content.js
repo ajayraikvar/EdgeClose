@@ -99,7 +99,9 @@ function playWarningSound() {
   }
 }
 
-function armDeadlineTimer(){window.clearTimeout(deadlineTimer);window.clearInterval(deadlineRetryTimer);if(!deadlineAt||!scheduleActive||window.top!==window)return;const trigger=()=>chrome.runtime.sendMessage({type:"edgeclose-deadline"}).catch(()=>{});const delay=Math.max(0,deadlineAt-Date.now());deadlineTimer=window.setTimeout(()=>{trigger();let attempts=0;deadlineRetryTimer=window.setInterval(()=>{attempts+=1;if(!scheduleActive||Date.now()+1000<deadlineAt||attempts>8){window.clearInterval(deadlineRetryTimer);return;}trigger();},1000);},delay);}
+function safeSend(message) { try { chrome.runtime.sendMessage(message).catch(() => {}); } catch {} }
+
+function armDeadlineTimer(){window.clearTimeout(deadlineTimer);window.clearInterval(deadlineRetryTimer);if(!deadlineAt||!scheduleActive||window.top!==window)return;const trigger=()=>safeSend({type:"edgeclose-deadline"});const delay=Math.max(0,deadlineAt-Date.now());deadlineTimer=window.setTimeout(()=>{trigger();let attempts=0;deadlineRetryTimer=window.setInterval(()=>{attempts+=1;if(!scheduleActive||Date.now()+1000<deadlineAt||attempts>8){window.clearInterval(deadlineRetryTimer);return;}trigger();},1000);},delay);}
 
 chrome.runtime.onMessage.addListener((message) => {
   if (message.type !== "edgeclose-status") return;
@@ -134,7 +136,7 @@ chrome.runtime.onMessage.addListener((message) => {
 });
 
 function reportActivity() {
-  chrome.runtime.sendMessage({ type: "edgeclose-activity" }).catch(() => {});
+  safeSend({ type: "edgeclose-activity" });
 }
 
 ["pointerdown", "keydown", "wheel", "touchstart", "input", "change"].forEach((eventName) => {
